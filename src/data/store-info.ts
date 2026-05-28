@@ -13,16 +13,16 @@ export const storeInfo = {
   phone: "0927007117",
   zalo: "0927007117",
   email: "contact@gficon.vn",
-  facebook: "https://facebook.com/gficon", // <-- Quỳnh thay link FB thật
-  tiktok: "https://tiktok.com/@gficon", // <-- Quỳnh thay link TikTok thật
-  address: "TP. Hồ Chí Minh", // <-- Quỳnh thay địa chỉ thật
+  facebook: "https://www.facebook.com/gficon",
+  tiktok: "", // Chưa có — thêm sau khi tạo TikTok
+  address: "93 Phạm Ngọc Thảo, Tây Thạnh, TP. Hồ Chí Minh",
 
   // Thông tin chuyển khoản
   bankInfo: {
-    bankName: "Vietcombank", // <-- Thay tên ngân hàng
-    accountNumber: "0123456789", // <-- Thay số tài khoản
-    accountName: "NGUYỄN THỊ DẠ QUỲNH", // <-- Thay tên chủ tài khoản
-    branch: "Chi nhánh TP.HCM", // <-- Thay chi nhánh
+    bankName: "TPBank (Ngân hàng Tiên Phong)",
+    accountNumber: "4296666888",
+    accountName: "NGUYỄN THỊ DẠ QUỲNH",
+    branch: "",
   },
 
   // Chính sách
