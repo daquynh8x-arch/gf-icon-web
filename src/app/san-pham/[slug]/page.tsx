@@ -36,6 +36,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
 
   if (!product) {
     return (
@@ -86,16 +87,47 @@ export default function ProductDetailPage() {
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Image */}
-        <div className="bg-[#f5f0eb] aspect-[3/4] flex items-center justify-center">
-          <div className="text-center opacity-30">
-            <svg viewBox="0 0 120 160" fill="none" className="w-32 h-44 mx-auto text-gray-500">
-              <path d="M60 12 L40 28 L35 25 L28 35 L18 140 L102 140 L92 35 L85 25 L80 28 Z" stroke="currentColor" strokeWidth="1" fill="none"/>
-              <path d="M40 28 Q60 42 80 28" stroke="currentColor" strokeWidth="1" fill="none"/>
-              <circle cx="60" cy="18" r="2.5" stroke="currentColor" strokeWidth="0.8" fill="none"/>
-            </svg>
-            <p className="text-gray-400 text-xs mt-4 uppercase tracking-[0.2em]">Ảnh sản phẩm sắp cập nhật</p>
-          </div>
+        {/* Image Gallery */}
+        <div>
+          {product.images.length > 0 && product.images[0] !== "/images/products/co-tru-classic-1.jpg" && !product.images[0].includes("placeholder") ? (
+            <div>
+              {/* Main Image */}
+              <div className="bg-[#f5f0eb] aspect-[3/4] overflow-hidden">
+                <img
+                  src={product.images[activeImage] || product.images[0]}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Thumbnails */}
+              {product.images.length > 1 && (
+                <div className="flex gap-2 mt-3 overflow-x-auto pb-2">
+                  {product.images.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImage(i)}
+                      className={`shrink-0 w-16 h-20 overflow-hidden border-2 transition ${
+                        activeImage === i ? "border-gray-900" : "border-transparent opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={img} alt={`${product.name} ${i + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="bg-[#f5f0eb] aspect-[3/4] flex items-center justify-center">
+              <div className="text-center opacity-30">
+                <svg viewBox="0 0 120 160" fill="none" className="w-32 h-44 mx-auto text-gray-500">
+                  <path d="M60 12 L40 28 L35 25 L28 35 L18 140 L102 140 L92 35 L85 25 L80 28 Z" stroke="currentColor" strokeWidth="1" fill="none"/>
+                  <path d="M40 28 Q60 42 80 28" stroke="currentColor" strokeWidth="1" fill="none"/>
+                  <circle cx="60" cy="18" r="2.5" stroke="currentColor" strokeWidth="0.8" fill="none"/>
+                </svg>
+                <p className="text-gray-400 text-xs mt-4 uppercase tracking-[0.2em]">Ảnh sản phẩm sắp cập nhật</p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Product Info */}

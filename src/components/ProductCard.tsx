@@ -37,16 +37,24 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       {/* Image */}
       <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50">
-        {/* Stylish placeholder */}
-        <div className="w-full h-full flex items-center justify-center shimmer-bg">
-          <div className="text-center opacity-40 group-hover:opacity-50 transition-opacity">
-            <svg viewBox="0 0 100 120" fill="none" className="w-20 h-24 mx-auto text-gray-400">
-              <path d="M50 8 L35 20 L30 18 L25 25 L15 95 L85 95 L75 25 L70 18 L65 20 Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-              <path d="M35 20 Q50 30 65 20" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-              <circle cx="50" cy="14" r="2" fill="currentColor" opacity="0.5"/>
-            </svg>
+        {/* Product image or placeholder */}
+        {product.images[0] && !product.images[0].includes("co-tru-classic") && !product.images[0].includes("co-tru-phoi") && !product.images[0].includes("co-tron-") && !product.images[0].includes("quan-tay-") && !product.images[0].includes("bomber-") && !product.images[0].includes("that-lung-") ? (
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center shimmer-bg">
+            <div className="text-center opacity-40 group-hover:opacity-50 transition-opacity">
+              <svg viewBox="0 0 100 120" fill="none" className="w-20 h-24 mx-auto text-gray-400">
+                <path d="M50 8 L35 20 L30 18 L25 25 L15 95 L85 95 L75 25 L70 18 L65 20 Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                <path d="M35 20 Q50 30 65 20" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                <circle cx="50" cy="14" r="2" fill="currentColor" opacity="0.5"/>
+              </svg>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
