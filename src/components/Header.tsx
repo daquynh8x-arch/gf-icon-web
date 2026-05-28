@@ -25,31 +25,31 @@ export default function Header() {
               href="/san-pham"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
             >
-              San pham
+              Sản phẩm
             </Link>
             <Link
               href="/san-pham?category=ao-thun-co-tru"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
             >
-              Ao Co Tru
+              Áo Cổ Trụ
             </Link>
             <Link
               href="/san-pham?category=ao-polo"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
             >
-              Ao Polo
+              Áo Polo
             </Link>
             <Link
               href="/ve-chung-toi"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
             >
-              Ve chung toi
+              Về chúng tôi
             </Link>
             <Link
               href="/lien-he"
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
             >
-              Lien he
+              Liên hệ
             </Link>
           </nav>
 
@@ -112,11 +112,11 @@ export default function Header() {
           <nav className="md:hidden pb-4 border-t border-gray-100 pt-2">
             <div className="flex flex-col gap-2">
               {[
-                { href: "/san-pham", label: "San pham" },
-                { href: "/san-pham?category=ao-thun-co-tru", label: "Ao Co Tru" },
-                { href: "/san-pham?category=ao-polo", label: "Ao Polo" },
-                { href: "/ve-chung-toi", label: "Ve chung toi" },
-                { href: "/lien-he", label: "Lien he" },
+                { href: "/san-pham", label: "Sản phẩm" },
+                { href: "/san-pham?category=ao-thun-co-tru", label: "Áo Cổ Trụ" },
+                { href: "/san-pham?category=ao-polo", label: "Áo Polo" },
+                { href: "/ve-chung-toi", label: "Về chúng tôi" },
+                { href: "/lien-he", label: "Liên hệ" },
               ].map((item) => (
                 <Link
                   key={item.href}

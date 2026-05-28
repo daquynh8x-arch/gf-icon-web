@@ -15,52 +15,52 @@ export default function Footer() {
             <p className="mt-2 text-sm text-gray-400">{storeInfo.description}</p>
           </div>
 
-          {/* San pham */}
+          {/* Sản phẩm */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              San pham
+              Sản phẩm
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/san-pham?category=ao-thun-co-tru" className="hover:text-white transition">
-                  Ao Thun Co Tru
+                  Áo Thun Cổ Trụ
                 </Link>
               </li>
               <li>
                 <Link href="/san-pham?category=ao-polo" className="hover:text-white transition">
-                  Ao Polo Nam
+                  Áo Polo Nam
                 </Link>
               </li>
               <li>
                 <Link href="/san-pham?category=ao-thun-co-tron" className="hover:text-white transition">
-                  Ao Thun Co Tron
+                  Áo Thun Cổ Tròn
                 </Link>
               </li>
               <li>
                 <Link href="/san-pham" className="hover:text-white transition">
-                  Tat ca san pham
+                  Tất cả sản phẩm
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Chinh sach */}
+          {/* Chính sách */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Chinh sach
+              Chính sách
             </h3>
             <ul className="space-y-2 text-sm">
-              <li>Doi tra trong {storeInfo.policies.returnDays} ngay</li>
-              <li>Free ship don tu {(storeInfo.policies.freeShipMin / 1000).toFixed(0)}k</li>
-              <li>Thanh toan COD toan quoc</li>
-              <li>Chuyen khoan ngan hang</li>
+              <li>Đổi trả trong {storeInfo.policies.returnDays} ngày</li>
+              <li>Free ship đơn từ {(storeInfo.policies.freeShipMin / 1000).toFixed(0)}k</li>
+              <li>Thanh toán COD toàn quốc</li>
+              <li>Chuyển khoản ngân hàng</li>
             </ul>
           </div>
 
-          {/* Lien he */}
+          {/* Liên hệ */}
           <div>
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Lien he
+              Liên hệ
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -106,7 +106,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} GF ICON. Thuong hieu thuoc ve Da Quynh — Xuong Si Hoang Hung.
+          &copy; {new Date().getFullYear()} GF ICON. Thương hiệu thuộc về Dạ Quỳnh — Xưởng Sỉ Hoàng Hưng.
         </div>
       </div>
     </footer>

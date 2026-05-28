@@ -1,6 +1,6 @@
 // ============================================================
-// DATA SAN PHAM GF ICON
-// Quynh chi can sua file nay de cap nhat san pham
+// DATA SẢN PHẨM GF ICON
+// Quỳnh chỉ cần sửa file này để cập nhật sản phẩm
 // ============================================================
 
 export interface Product {
@@ -8,16 +8,16 @@ export interface Product {
   slug: string;
   name: string;
   category: "ao-thun-co-tru" | "ao-polo" | "ao-thun-co-tron";
-  price: number; // Gia ban le (VND)
-  originalPrice?: number; // Gia goc truoc khi giam (neu co)
-  images: string[]; // Danh sach anh san pham
-  colors: string[]; // Cac mau co san
-  sizes: string[]; // Cac size co san
-  material: string; // Chat lieu
+  price: number;
+  originalPrice?: number;
+  images: string[];
+  colors: string[];
+  sizes: string[];
+  material: string;
   description: string;
   features: string[];
   inStock: boolean;
-  badge?: "new" | "hot" | "sale"; // Nhan hien thi
+  badge?: "new" | "hot" | "sale";
 }
 
 export interface Category {
@@ -29,57 +29,57 @@ export interface Category {
 }
 
 // ============================================================
-// DANH MUC SAN PHAM
+// DANH MỤC SẢN PHẨM
 // ============================================================
 
 export const categories: Category[] = [
   {
     id: "ao-thun-co-tru",
-    name: "Ao Thun Co Tru",
+    name: "Áo Thun Cổ Trụ",
     slug: "ao-thun-co-tru",
-    description: "Ao thun co tru nam phong cach lich lam, chat thun lanh QC thoang mat",
+    description: "Áo thun cổ trụ nam phong cách lịch lãm, chất thun lạnh QC thoáng mát",
     image: "/images/category-co-tru.jpg",
   },
   {
     id: "ao-polo",
-    name: "Ao Polo",
+    name: "Áo Polo",
     slug: "ao-polo",
-    description: "Ao polo nam ca sau min QC cao cap, may ky chuan shop",
+    description: "Áo polo nam cá sấu mịn QC cao cấp, may kỹ chuẩn shop",
     image: "/images/category-polo.jpg",
   },
   {
     id: "ao-thun-co-tron",
-    name: "Ao Thun Co Tron",
+    name: "Áo Thun Cổ Tròn",
     slug: "ao-thun-co-tron",
-    description: "Ao thun co tron basic, de phoi do, chat thun lanh QC",
+    description: "Áo thun cổ tròn basic, dễ phối đồ, chất thun lạnh QC",
     image: "/images/category-co-tron.jpg",
   },
 ];
 
 // ============================================================
-// SAN PHAM MAU — Quynh thay anh that va cap nhat thong tin
+// SẢN PHẨM MẪU — Quỳnh thay ảnh thật và cập nhật thông tin
 // ============================================================
 
 export const products: Product[] = [
   {
     id: "gfi-001",
     slug: "ao-thun-co-tru-classic-den",
-    name: "Ao Thun Co Tru Classic",
+    name: "Áo Thun Cổ Trụ Classic",
     category: "ao-thun-co-tru",
     price: 259000,
     originalPrice: 320000,
     images: ["/images/products/co-tru-classic-1.jpg"],
-    colors: ["Den", "Trang", "Xam", "Xanh Navy"],
+    colors: ["Đen", "Trắng", "Xám", "Xanh Navy"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Thun lanh QC cao cap",
+    material: "Thun lạnh QC cao cấp",
     description:
-      "Ao thun co tru GF ICON phien ban Classic — thiet ke tinh gian, chat thun lanh QC thoang mat. Phu hop mac di lam, di choi, hay ngay thuong. Co tru dung form, may ky tung duong chi.",
+      "Áo thun cổ trụ GF ICON phiên bản Classic — thiết kế tinh giản, chất thun lạnh QC thoáng mát. Phù hợp mặc đi làm, đi chơi, hay ngày thường. Cổ trụ đứng form, may kỹ từng đường chỉ.",
     features: [
-      "Chat lieu: Thun lanh QC — thoang mat, khong nhan, khong bai",
-      "Co tru dung form, lich lam",
-      "May ky chuan shop — duong chi deu dep",
+      "Chất liệu: Thun lạnh QC — thoáng mát, không nhăn, không bai",
+      "Cổ trụ đứng form, lịch lãm",
+      "May kỹ chuẩn shop — đường chỉ đều đẹp",
       "Size: M - XXL (50kg - 95kg)",
-      "Giat may khong bien dang",
+      "Giặt máy không biến dạng",
     ],
     inStock: true,
     badge: "hot",
@@ -87,21 +87,21 @@ export const products: Product[] = [
   {
     id: "gfi-002",
     slug: "ao-thun-co-tru-phoi-ke",
-    name: "Ao Thun Co Tru Phoi Ke",
+    name: "Áo Thun Cổ Trụ Phối Kẻ",
     category: "ao-thun-co-tru",
     price: 279000,
     images: ["/images/products/co-tru-phoi-ke-1.jpg"],
-    colors: ["Den phoi ke", "Navy phoi ke", "Xam phoi ke"],
+    colors: ["Đen phối kẻ", "Navy phối kẻ", "Xám phối kẻ"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Thun lanh QC cao cap",
+    material: "Thun lạnh QC cao cấp",
     description:
-      "Ao thun co tru phoi ke GF ICON — diem nhan tinh te o co va tay. Chat thun lanh QC mem min, thoang mat suot ngay. Phong cach tre trung nhung khong qua noi bat.",
+      "Áo thun cổ trụ phối kẻ GF ICON — điểm nhấn tinh tế ở cổ và tay. Chất thun lạnh QC mềm mịn, thoáng mát suốt ngày. Phong cách trẻ trung nhưng không quá nổi bật.",
     features: [
-      "Chat lieu: Thun lanh QC — mem min, thoang mat",
-      "Chi tiet phoi ke tinh te o co va tay ao",
-      "Dung form, ton dang",
+      "Chất liệu: Thun lạnh QC — mềm mịn, thoáng mát",
+      "Chi tiết phối kẻ tinh tế ở cổ và tay áo",
+      "Đứng form, tôn dáng",
       "Size: M - XXL",
-      "De phoi voi quan jeans, kaki, short",
+      "Dễ phối với quần jeans, kaki, short",
     ],
     inStock: true,
     badge: "new",
@@ -109,22 +109,22 @@ export const products: Product[] = [
   {
     id: "gfi-003",
     slug: "ao-polo-ca-sau-min",
-    name: "Ao Polo Ca Sau Min Premium",
+    name: "Áo Polo Cá Sấu Mịn Premium",
     category: "ao-polo",
     price: 299000,
     originalPrice: 380000,
     images: ["/images/products/polo-ca-sau-1.jpg"],
-    colors: ["Den", "Trang", "Xanh reu", "Xam nhat", "Be"],
+    colors: ["Đen", "Trắng", "Xanh rêu", "Xám nhạt", "Be"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Ca sau min QC cao cap",
+    material: "Cá sấu mịn QC cao cấp",
     description:
-      "Ao polo GF ICON chat ca sau min QC — be mat min mang, thoang khi, khong xo long. Thiet ke co bac classic, phu hop di lam va di choi. May ky chuan shop, duong chi chinh chu.",
+      "Áo polo GF ICON chất cá sấu mịn QC — bề mặt mịn màng, thoáng khí, không xù lông. Thiết kế cổ bẻ classic, phù hợp đi làm và đi chơi. May kỹ chuẩn shop, đường chỉ chỉnh chu.",
     features: [
-      "Chat lieu: Ca sau min QC cao cap — min mang, thoang khi",
-      "Co bac classic, giu phom tot",
-      "Khong xo long, khong bien dang sau nhieu lan giat",
+      "Chất liệu: Cá sấu mịn QC cao cấp — mịn màng, thoáng khí",
+      "Cổ bẻ classic, giữ phom tốt",
+      "Không xù lông, không biến dạng sau nhiều lần giặt",
       "Size: M - XXL (50kg - 95kg)",
-      "Phu hop di lam, cafe, hen ho",
+      "Phù hợp đi làm, cafe, hẹn hò",
     ],
     inStock: true,
     badge: "hot",
@@ -132,21 +132,21 @@ export const products: Product[] = [
   {
     id: "gfi-004",
     slug: "ao-polo-phoi-vien",
-    name: "Ao Polo Phoi Vien Sport",
+    name: "Áo Polo Phối Viền Sport",
     category: "ao-polo",
     price: 289000,
     images: ["/images/products/polo-phoi-vien-1.jpg"],
-    colors: ["Den phoi do", "Navy phoi trang", "Xam phoi den"],
+    colors: ["Đen phối đỏ", "Navy phối trắng", "Xám phối đen"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Ca sau min QC cao cap",
+    material: "Cá sấu mịn QC cao cấp",
     description:
-      "Ao polo phoi vien GF ICON — phong cach sporty nhung van lich su. Chat ca sau min QC mem mai, co tieu chuan, vien co va tay phoi mau noi bat.",
+      "Áo polo phối viền GF ICON — phong cách sporty nhưng vẫn lịch sự. Chất cá sấu mịn QC mềm mại, cổ tiêu chuẩn, viền cổ và tay phối màu nổi bật.",
     features: [
-      "Chat lieu: Ca sau min QC — mem, thoang, ben mau",
-      "Thiet ke phoi vien sporty tai co va tay",
-      "Form regular fit — thoai mai van dong",
+      "Chất liệu: Cá sấu mịn QC — mềm, thoáng, bền màu",
+      "Thiết kế phối viền sporty tại cổ và tay",
+      "Form regular fit — thoải mái vận động",
       "Size: M - XXL",
-      "Ket hop duoc voi nhieu phong cach",
+      "Kết hợp được với nhiều phong cách",
     ],
     inStock: true,
     badge: "new",
@@ -154,42 +154,42 @@ export const products: Product[] = [
   {
     id: "gfi-005",
     slug: "ao-thun-co-tron-basic",
-    name: "Ao Thun Co Tron Basic",
+    name: "Áo Thun Cổ Tròn Basic",
     category: "ao-thun-co-tron",
     price: 199000,
     images: ["/images/products/co-tron-basic-1.jpg"],
-    colors: ["Den", "Trang", "Xam", "Navy", "Kem"],
+    colors: ["Đen", "Trắng", "Xám", "Navy", "Kem"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Thun lanh QC",
+    material: "Thun lạnh QC",
     description:
-      "Ao thun co tron basic GF ICON — don gian nhung khong tam thuong. Chat thun lanh QC mem min, mac mot minh hay layer deu dep. Must-have cho tu do nam.",
+      "Áo thun cổ tròn basic GF ICON — đơn giản nhưng không tầm thường. Chất thun lạnh QC mềm mịn, mặc một mình hay layer đều đẹp. Must-have cho tủ đồ nam.",
     features: [
-      "Chat lieu: Thun lanh QC — mem, mat, khong nhan",
-      "Co tron rong vua phai",
-      "Form fitted — ton dang khong chat",
+      "Chất liệu: Thun lạnh QC — mềm, mát, không nhăn",
+      "Cổ tròn rộng vừa phải",
+      "Form fitted — tôn dáng không chật",
       "Size: M - XXL",
-      "5 mau co ban, de mix-match",
+      "5 màu cơ bản, dễ mix-match",
     ],
     inStock: true,
   },
   {
     id: "gfi-006",
     slug: "ao-thun-co-tron-in-minimal",
-    name: "Ao Thun Co Tron In Minimal",
+    name: "Áo Thun Cổ Tròn In Minimal",
     category: "ao-thun-co-tron",
     price: 229000,
     images: ["/images/products/co-tron-minimal-1.jpg"],
-    colors: ["Den", "Trang", "Xam dam"],
+    colors: ["Đen", "Trắng", "Xám đậm"],
     sizes: ["M", "L", "XL", "XXL"],
-    material: "Thun lanh QC",
+    material: "Thun lạnh QC",
     description:
-      "Ao thun co tron GF ICON voi hoa tiet in minimal — tinh te, khong loe loet. Chat thun lanh QC thoang mat, hinh in ben mau khong bong troc.",
+      "Áo thun cổ tròn GF ICON với họa tiết in minimal — tinh tế, không lòe loẹt. Chất thun lạnh QC thoáng mát, hình in bền màu không bong tróc.",
     features: [
-      "Chat lieu: Thun lanh QC cao cap",
-      "Hoa tiet in DTG — ben mau, khong bong troc",
-      "Thiet ke minimal, phu hop moi dip",
+      "Chất liệu: Thun lạnh QC cao cấp",
+      "Họa tiết in DTG — bền màu, không bong tróc",
+      "Thiết kế minimal, phù hợp mọi dịp",
       "Size: M - XXL",
-      "Giat may binh thuong, khong can cham soc dac biet",
+      "Giặt máy bình thường, không cần chăm sóc đặc biệt",
     ],
     inStock: true,
     badge: "new",
@@ -213,5 +213,5 @@ export function getFeaturedProducts(): Product[] {
 }
 
 export function formatPrice(price: number): string {
-  return new Intl.NumberFormat("vi-VN").format(price) + "d";
+  return new Intl.NumberFormat("vi-VN").format(price) + "đ";
 }

@@ -23,26 +23,26 @@ function ProductList() {
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-gray-900">
-          Trang chu
+          Trang chủ
         </Link>
         <span className="mx-2">/</span>
         {currentCategory ? (
           <>
             <Link href="/san-pham" className="hover:text-gray-900">
-              San pham
+              Sản phẩm
             </Link>
             <span className="mx-2">/</span>
             <span className="text-gray-900">{currentCategory.name}</span>
           </>
         ) : (
-          <span className="text-gray-900">Tat ca san pham</span>
+          <span className="text-gray-900">Tất cả sản phẩm</span>
         )}
       </nav>
 
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar Filters */}
         <aside className="md:w-56 shrink-0">
-          <h3 className="font-semibold text-gray-900 mb-4">Danh muc</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">Danh mục</h3>
           <ul className="space-y-2">
             <li>
               <Link
@@ -53,7 +53,7 @@ function ProductList() {
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >
-                Tat ca ({products.length})
+                Tất cả ({products.length})
               </Link>
             </li>
             {categories.map((cat) => {
@@ -80,16 +80,16 @@ function ProductList() {
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-bold text-gray-900">
-              {currentCategory ? currentCategory.name : "Tat ca san pham"}
+              {currentCategory ? currentCategory.name : "Tất cả sản phẩm"}
             </h1>
-            <span className="text-sm text-gray-500">{filtered.length} san pham</span>
+            <span className="text-sm text-gray-500">{filtered.length} sản phẩm</span>
           </div>
 
           {filtered.length === 0 ? (
             <div className="text-center py-20 text-gray-400">
-              <p className="text-lg">Chua co san pham nao trong danh muc nay.</p>
+              <p className="text-lg">Chưa có sản phẩm nào trong danh mục này.</p>
               <Link href="/san-pham" className="text-amber-600 hover:underline mt-2 inline-block">
-                Xem tat ca san pham
+                Xem tất cả sản phẩm
               </Link>
             </div>
           ) : (
@@ -110,7 +110,7 @@ export default function SanPhamPage() {
     <Suspense
       fallback={
         <div className="max-w-7xl mx-auto px-4 py-20 text-center text-gray-400">
-          Dang tai san pham...
+          Đang tải sản phẩm...
         </div>
       }
     >

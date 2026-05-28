@@ -35,7 +35,7 @@ export default function CheckoutPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.address || !form.city) {
-      alert("Vui long dien day du thong tin giao hang!");
+      alert("Vui lòng điền đầy đủ thông tin giao hàng!");
       return;
     }
 
@@ -54,7 +54,7 @@ export default function CheckoutPage() {
       )
       .join("\n");
 
-    const message = `DON HANG MOI #${num}\n\nKhach: ${form.name}\nSĐT: ${form.phone}\nDia chi: ${form.address}, ${form.city}\nGhi chu: ${form.note || "Khong"}\n\nSan pham:\n${orderSummary}\n\nTam tinh: ${formatPrice(totalPrice)}\nPhi ship: ${freeShip ? "Mien phi" : formatPrice(shippingFee)}\nTONG: ${formatPrice(grandTotal)}\nThanh toan: ${paymentMethod === "cod" ? "COD" : "Chuyen khoan"}`;
+    const message = `ĐƠN HÀNG MỚI #${num}\n\nKhách: ${form.name}\nSĐT: ${form.phone}\nĐịa chỉ: ${form.address}, ${form.city}\nGhi chú: ${form.note || "Không"}\n\nSản phẩm:\n${orderSummary}\n\nTạm tính: ${formatPrice(totalPrice)}\nPhí ship: ${freeShip ? "Miễn phí" : formatPrice(shippingFee)}\nTỔNG: ${formatPrice(grandTotal)}\nThanh toán: ${paymentMethod === "cod" ? "COD" : "Chuyển khoản"}`;
 
     console.log("=== ORDER ===", message);
 
@@ -65,9 +65,9 @@ export default function CheckoutPage() {
   if (items.length === 0 && !orderPlaced) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Khong co san pham de thanh toan</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Không có sản phẩm để thanh toán</h1>
         <Link href="/san-pham" className="text-amber-600 hover:underline mt-4 inline-block">
-          Xem san pham
+          Xem sản phẩm
         </Link>
       </div>
     );
@@ -81,21 +81,21 @@ export default function CheckoutPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
         </div>
-        <h1 className="text-2xl font-bold text-gray-900 mt-6">Dat hang thanh cong!</h1>
-        <p className="text-gray-500 mt-2">Ma don hang: <span className="font-bold text-gray-900">{orderNumber}</span></p>
+        <h1 className="text-2xl font-bold text-gray-900 mt-6">Đặt hàng thành công!</h1>
+        <p className="text-gray-500 mt-2">Mã đơn hàng: <span className="font-bold text-gray-900">{orderNumber}</span></p>
 
         {paymentMethod === "bank" && (
           <div className="mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6 text-left">
-            <h3 className="font-bold text-gray-900 mb-3">Thong tin chuyen khoan</h3>
+            <h3 className="font-bold text-gray-900 mb-3">Thông tin chuyển khoản</h3>
             <div className="space-y-2 text-sm">
-              <p><span className="text-gray-500">Ngan hang:</span> <strong>{storeInfo.bankInfo.bankName}</strong></p>
-              <p><span className="text-gray-500">So tai khoan:</span> <strong>{storeInfo.bankInfo.accountNumber}</strong></p>
-              <p><span className="text-gray-500">Chu tai khoan:</span> <strong>{storeInfo.bankInfo.accountName}</strong></p>
-              <p><span className="text-gray-500">Noi dung CK:</span> <strong>{orderNumber}</strong></p>
-              <p><span className="text-gray-500">So tien:</span> <strong className="text-amber-600">{formatPrice(grandTotal)}</strong></p>
+              <p><span className="text-gray-500">Ngân hàng:</span> <strong>{storeInfo.bankInfo.bankName}</strong></p>
+              <p><span className="text-gray-500">Số tài khoản:</span> <strong>{storeInfo.bankInfo.accountNumber}</strong></p>
+              <p><span className="text-gray-500">Chủ tài khoản:</span> <strong>{storeInfo.bankInfo.accountName}</strong></p>
+              <p><span className="text-gray-500">Nội dung CK:</span> <strong>{orderNumber}</strong></p>
+              <p><span className="text-gray-500">Số tiền:</span> <strong className="text-amber-600">{formatPrice(grandTotal)}</strong></p>
             </div>
             <p className="mt-4 text-xs text-gray-500">
-              Vui long chuyen khoan trong 24h. Don hang se duoc xu ly sau khi xac nhan thanh toan.
+              Vui lòng chuyển khoản trong 24h. Đơn hàng sẽ được xử lý sau khi xác nhận thanh toán.
             </p>
           </div>
         )}
@@ -103,7 +103,7 @@ export default function CheckoutPage() {
         {paymentMethod === "cod" && (
           <div className="mt-6 bg-blue-50 border border-blue-200 rounded-2xl p-6">
             <p className="text-sm text-gray-600">
-              Don hang se duoc giao trong 2-5 ngay. Ban thanh toan khi nhan hang.
+              Đơn hàng sẽ được giao trong 2-5 ngày. Bạn thanh toán khi nhận hàng.
             </p>
           </div>
         )}
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
             href="/san-pham"
             className="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-full transition"
           >
-            Tiep tuc mua sam
+            Tiếp tục mua sắm
           </Link>
           <a
             href={`https://zalo.me/${storeInfo.zalo}`}
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
             rel="noopener noreferrer"
             className="px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-full hover:border-gray-500 transition"
           >
-            Nhan Zalo ho tro
+            Nhắn Zalo hỗ trợ
           </a>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">Thanh toan</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-8">Thanh toán</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -138,11 +138,11 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Customer Info */}
             <div className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="font-bold text-gray-900 mb-4">Thong tin giao hang</h2>
+              <h2 className="font-bold text-gray-900 mb-4">Thông tin giao hàng</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Ho ten <span className="text-red-500">*</span>
+                    Họ tên <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -156,7 +156,7 @@ export default function CheckoutPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    So dien thoai <span className="text-red-500">*</span>
+                    Số điện thoại <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -181,7 +181,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Dia chi <span className="text-red-500">*</span>
+                    Địa chỉ <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -190,12 +190,12 @@ export default function CheckoutPage() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    placeholder="So nha, duong, phuong/xa"
+                    placeholder="Số nhà, đường, phường/xã"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Tinh/Thanh pho <span className="text-red-500">*</span>
+                    Tỉnh/Thành phố <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -208,14 +208,14 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Ghi chu</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Ghi chú</label>
                   <input
                     type="text"
                     name="note"
                     value={form.note}
                     onChange={handleChange}
                     className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                    placeholder="Giao gio hanh chinh, goi truoc..."
+                    placeholder="Giao giờ hành chính, gọi trước..."
                   />
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function CheckoutPage() {
 
             {/* Payment Method */}
             <div className="bg-white rounded-2xl border border-gray-100 p-6">
-              <h2 className="font-bold text-gray-900 mb-4">Phuong thuc thanh toan</h2>
+              <h2 className="font-bold text-gray-900 mb-4">Phương thức thanh toán</h2>
               <div className="space-y-3">
                 <label
                   className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition ${
@@ -239,8 +239,8 @@ export default function CheckoutPage() {
                     className="accent-amber-600"
                   />
                   <div>
-                    <p className="font-semibold text-gray-900">Thanh toan khi nhan hang (COD)</p>
-                    <p className="text-sm text-gray-500">Tra tien mat khi nhan hang tu shipper</p>
+                    <p className="font-semibold text-gray-900">Thanh toán khi nhận hàng (COD)</p>
+                    <p className="text-sm text-gray-500">Trả tiền mặt khi nhận hàng từ shipper</p>
                   </div>
                 </label>
 
@@ -258,7 +258,7 @@ export default function CheckoutPage() {
                     className="accent-amber-600"
                   />
                   <div>
-                    <p className="font-semibold text-gray-900">Chuyen khoan ngan hang</p>
+                    <p className="font-semibold text-gray-900">Chuyển khoản ngân hàng</p>
                     <p className="text-sm text-gray-500">
                       {storeInfo.bankInfo.bankName} — {storeInfo.bankInfo.accountName}
                     </p>
@@ -268,11 +268,11 @@ export default function CheckoutPage() {
 
               {paymentMethod === "bank" && (
                 <div className="mt-4 bg-amber-50 rounded-xl p-4 text-sm">
-                  <p className="font-semibold text-gray-900 mb-2">Thong tin chuyen khoan:</p>
-                  <p>Ngan hang: <strong>{storeInfo.bankInfo.bankName}</strong></p>
+                  <p className="font-semibold text-gray-900 mb-2">Thông tin chuyển khoản:</p>
+                  <p>Ngân hàng: <strong>{storeInfo.bankInfo.bankName}</strong></p>
                   <p>STK: <strong>{storeInfo.bankInfo.accountNumber}</strong></p>
-                  <p>Chu TK: <strong>{storeInfo.bankInfo.accountName}</strong></p>
-                  <p className="mt-2 text-xs text-gray-500">Noi dung CK: [Ma don hang se duoc tao sau khi dat hang]</p>
+                  <p>Chủ TK: <strong>{storeInfo.bankInfo.accountName}</strong></p>
+                  <p className="mt-2 text-xs text-gray-500">Nội dung CK: [Mã đơn hàng sẽ được tạo sau khi đặt hàng]</p>
                 </div>
               )}
             </div>
@@ -282,7 +282,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-gray-50 rounded-2xl p-6 sticky top-24">
               <h2 className="font-bold text-gray-900 mb-4">
-                Don hang ({items.reduce((s, i) => s + i.quantity, 0)} san pham)
+                Đơn hàng ({items.reduce((s, i) => s + i.quantity, 0)} sản phẩm)
               </h2>
 
               <div className="space-y-3 max-h-60 overflow-y-auto">
@@ -308,18 +308,18 @@ export default function CheckoutPage() {
 
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Tam tinh</span>
+                  <span className="text-gray-500">Tạm tính</span>
                   <span>{formatPrice(totalPrice)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Van chuyen</span>
+                  <span className="text-gray-500">Vận chuyển</span>
                   <span className={freeShip ? "text-green-600" : ""}>
-                    {freeShip ? "Mien phi" : formatPrice(shippingFee)}
+                    {freeShip ? "Miễn phí" : formatPrice(shippingFee)}
                   </span>
                 </div>
                 <hr className="border-gray-200" />
                 <div className="flex justify-between text-base font-bold">
-                  <span>Tong cong</span>
+                  <span>Tổng cộng</span>
                   <span className="text-amber-600">{formatPrice(grandTotal)}</span>
                 </div>
               </div>
@@ -328,11 +328,11 @@ export default function CheckoutPage() {
                 type="submit"
                 className="w-full mt-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-full transition shadow-lg shadow-amber-600/30"
               >
-                Dat hang
+                Đặt hàng
               </button>
 
               <p className="mt-3 text-xs text-gray-400 text-center">
-                Doi tra trong {storeInfo.policies.returnDays} ngay neu khong hai long
+                Đổi trả trong {storeInfo.policies.returnDays} ngày nếu không hài lòng
               </p>
             </div>
           </div>

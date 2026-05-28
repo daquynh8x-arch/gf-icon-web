@@ -41,7 +41,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 : "bg-green-500 text-white"
             }`}
           >
-            {product.badge === "hot" ? "Ban chay" : product.badge === "new" ? "Moi" : "Sale"}
+            {product.badge === "hot" ? "Bán chạy" : product.badge === "new" ? "Mới" : "Sale"}
           </span>
         )}
       </div>
@@ -55,7 +55,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {/* Colors preview */}
         <p className="text-xs text-gray-400 mt-2">
-          {product.colors.length} mau | {product.sizes.join(", ")}
+          {product.colors.length} màu | {product.sizes.join(", ")}
         </p>
 
         {/* Price */}

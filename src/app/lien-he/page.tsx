@@ -4,8 +4,8 @@ export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold text-gray-900">Lien he voi chung toi</h1>
-        <p className="mt-3 text-gray-500">Ban can tu van, ho tro, hay muon hop tac? Lien he GF ICON bat cu luc nao.</p>
+        <h1 className="text-3xl font-bold text-gray-900">Liên hệ với chúng tôi</h1>
+        <p className="mt-3 text-gray-500">Bạn cần tư vấn, hỗ trợ, hay muốn hợp tác? Liên hệ GF ICON bất cứ lúc nào.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -26,7 +26,7 @@ export default function ContactPage() {
                 >
                   {storeInfo.zalo}
                 </a>
-                <p className="text-xs text-gray-500 mt-1">Phan hoi nhanh nhat — trong vong 30 phut</p>
+                <p className="text-xs text-gray-500 mt-1">Phản hồi nhanh nhất — trong vòng 30 phút</p>
               </div>
             </div>
           </div>
@@ -37,11 +37,11 @@ export default function ContactPage() {
                 📞
               </div>
               <div>
-                <h3 className="font-bold text-gray-900">Dien thoai</h3>
+                <h3 className="font-bold text-gray-900">Điện thoại</h3>
                 <a href={`tel:${storeInfo.phone}`} className="text-green-600 hover:underline">
                   {storeInfo.phone}
                 </a>
-                <p className="text-xs text-gray-500 mt-1">8h - 21h hang ngay</p>
+                <p className="text-xs text-gray-500 mt-1">8h - 21h hàng ngày</p>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <a href={`mailto:${storeInfo.email}`} className="text-purple-600 hover:underline">
                   {storeInfo.email}
                 </a>
-                <p className="text-xs text-gray-500 mt-1">Phan hoi trong 24h</p>
+                <p className="text-xs text-gray-500 mt-1">Phản hồi trong 24h</p>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function ContactPage() {
                 >
                   GF ICON
                 </a>
-                <p className="text-xs text-gray-500 mt-1">Inbox truc tiep tren Facebook</p>
+                <p className="text-xs text-gray-500 mt-1">Inbox trực tiếp trên Facebook</p>
               </div>
             </div>
           </div>
@@ -85,50 +85,50 @@ export default function ContactPage() {
         {/* Info Card */}
         <div>
           <div className="bg-gray-50 rounded-2xl p-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Thong tin cua hang</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Thông tin cửa hàng</h2>
 
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-gray-500">Thuong hieu</p>
-                <p className="font-semibold text-gray-900">GF ICON — Ao thun nam cao cap</p>
+                <p className="text-sm text-gray-500">Thương hiệu</p>
+                <p className="font-semibold text-gray-900">GF ICON — Áo thun nam cao cấp</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Dia chi</p>
+                <p className="text-sm text-gray-500">Địa chỉ</p>
                 <p className="font-semibold text-gray-900">{storeInfo.address}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Gio lam viec</p>
+                <p className="text-sm text-gray-500">Giờ làm việc</p>
                 <p className="font-semibold text-gray-900">8h - 21h (T2 - CN)</p>
               </div>
             </div>
 
             <hr className="my-6 border-gray-200" />
 
-            <h3 className="font-bold text-gray-900 mb-3">Chinh sach</h3>
+            <h3 className="font-bold text-gray-900 mb-3">Chính sách</h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li className="flex items-center gap-2">
                 <span className="text-green-500">✓</span>
-                Doi tra trong {storeInfo.policies.returnDays} ngay
+                Đổi trả trong {storeInfo.policies.returnDays} ngày
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-500">✓</span>
-                Free ship don tu {(storeInfo.policies.freeShipMin / 1000).toFixed(0)}k
+                Free ship đơn từ {(storeInfo.policies.freeShipMin / 1000).toFixed(0)}k
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-500">✓</span>
-                COD toan quoc
+                COD toàn quốc
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-500">✓</span>
-                Chuyen khoan ngan hang
+                Chuyển khoản ngân hàng
               </li>
             </ul>
 
             <hr className="my-6 border-gray-200" />
 
-            <h3 className="font-bold text-gray-900 mb-3">Ban muon hop tac?</h3>
+            <h3 className="font-bold text-gray-900 mb-3">Bạn muốn hợp tác?</h3>
             <p className="text-sm text-gray-600 mb-4">
-              Neu ban la shop thoi trang va muon kinh doanh san pham GF ICON, lien he de tro thanh doi tac phan phoi.
+              Nếu bạn là shop thời trang và muốn kinh doanh sản phẩm GF ICON, liên hệ để trở thành đối tác phân phối.
             </p>
             <a
               href={`https://zalo.me/${storeInfo.zalo}`}
@@ -136,7 +136,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-full text-sm transition"
             >
-              Lien he hop tac
+              Liên hệ hợp tác
             </a>
           </div>
         </div>

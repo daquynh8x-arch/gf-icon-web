@@ -21,9 +21,9 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-900">San pham khong ton tai</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Sản phẩm không tồn tại</h1>
         <Link href="/san-pham" className="text-amber-600 hover:underline mt-4 inline-block">
-          &larr; Quay lai san pham
+          &larr; Quay lại sản phẩm
         </Link>
       </div>
     );
@@ -36,7 +36,7 @@ export default function ProductDetailPage() {
 
   const handleAddToCart = () => {
     if (!selectedColor || !selectedSize) {
-      alert("Vui long chon mau va size!");
+      alert("Vui lòng chọn màu và size!");
       return;
     }
     addItem(product, selectedColor, selectedSize, quantity);
@@ -48,9 +48,9 @@ export default function ProductDetailPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-500 mb-8">
-        <Link href="/" className="hover:text-gray-900">Trang chu</Link>
+        <Link href="/" className="hover:text-gray-900">Trang chủ</Link>
         <span className="mx-2">/</span>
-        <Link href="/san-pham" className="hover:text-gray-900">San pham</Link>
+        <Link href="/san-pham" className="hover:text-gray-900">Sản phẩm</Link>
         {category && (
           <>
             <span className="mx-2">/</span>
@@ -70,7 +70,7 @@ export default function ProductDetailPage() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" className="w-24 h-24 mx-auto">
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5a1.5 1.5 0 001.5 1.5z" />
             </svg>
-            <p className="mt-3 text-sm">Them anh san pham</p>
+            <p className="mt-3 text-sm">Thêm ảnh sản phẩm</p>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export default function ProductDetailPage() {
             <span className={`inline-block px-3 py-1 text-xs font-bold rounded-full uppercase mb-3 ${
               product.badge === "hot" ? "bg-red-100 text-red-600" : product.badge === "new" ? "bg-amber-100 text-amber-600" : "bg-green-100 text-green-600"
             }`}>
-              {product.badge === "hot" ? "Ban chay" : product.badge === "new" ? "Moi" : "Sale"}
+              {product.badge === "hot" ? "Bán chạy" : product.badge === "new" ? "Mới" : "Sale"}
             </span>
           )}
 
@@ -116,7 +116,7 @@ export default function ProductDetailPage() {
           {/* Color Selection */}
           <div className="mt-6">
             <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Mau sac: {selectedColor && <span className="font-normal text-gray-500">{selectedColor}</span>}
+              Màu sắc: {selectedColor && <span className="font-normal text-gray-500">{selectedColor}</span>}
             </label>
             <div className="flex flex-wrap gap-2">
               {product.colors.map((color) => (
@@ -159,7 +159,7 @@ export default function ProductDetailPage() {
 
           {/* Quantity */}
           <div className="mt-5">
-            <label className="block text-sm font-semibold text-gray-900 mb-2">So luong</label>
+            <label className="block text-sm font-semibold text-gray-900 mb-2">Số lượng</label>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -190,7 +190,7 @@ export default function ProductDetailPage() {
                   : "bg-gray-300 cursor-not-allowed"
               }`}
             >
-              {added ? "Da them vao gio!" : product.inStock ? "Them vao gio hang" : "Het hang"}
+              {added ? "Đã thêm vào giỏ!" : product.inStock ? "Thêm vào giỏ hàng" : "Hết hàng"}
             </button>
             <Link
               href="/gio-hang"
@@ -205,7 +205,7 @@ export default function ProductDetailPage() {
       {/* Related Products */}
       {related.length > 0 && (
         <section className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">San pham lien quan</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Sản phẩm liên quan</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
