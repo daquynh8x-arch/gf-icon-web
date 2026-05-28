@@ -176,7 +176,7 @@ export default function HomePage() {
               },
               {
                 title: "May kỹ chuẩn shop",
-                desc: "Từng đường chỉ đều đẹp, form áo chuẩn, size chính xác từ M đến XXL (50-95kg).",
+                desc: "Từng đường chỉ đều đẹp, form áo chuẩn, size chính xác từ L đến 5XL (dưới 55kg - 89kg).",
                 num: "02",
               },
               {
@@ -218,7 +218,7 @@ export default function HomePage() {
               { num: "10+", label: "Năm kinh nghiệm" },
               { num: "1000+", label: "Đối tác toàn quốc" },
               { num: "3", label: "Dòng sản phẩm" },
-              { num: "M—XXL", label: "Đầy đủ size" },
+              { num: "L—5XL", label: "Đầy đủ size" },
             ].map((item, i) => (
               <div key={i}>
                 <p className="text-3xl md:text-4xl font-black">{item.num}</p>

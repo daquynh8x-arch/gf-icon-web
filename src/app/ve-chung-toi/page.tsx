@@ -53,7 +53,7 @@ export default function AboutPage() {
             },
             {
               title: "Thiết kế cho người Việt",
-              desc: "Form áo chuẩn dáng người Việt, size từ M đến XXL (50-95kg). Mặc vừa, mặc đẹp, mặc tự tin.",
+              desc: "Form áo chuẩn dáng người Việt, size từ L đến 5XL (dưới 55kg - 89kg). Mặc vừa, mặc đẹp, mặc tự tin.",
               icon: "✂️",
             },
             {
@@ -78,7 +78,7 @@ export default function AboutPage() {
               { num: "10+", label: "Năm kinh nghiệm" },
               { num: "1000+", label: "Đối tác toàn quốc" },
               { num: "3", label: "Dòng sản phẩm" },
-              { num: "M-XXL", label: "Đầy đủ size" },
+              { num: "L-5XL", label: "Đầy đủ size" },
             ].map((item, i) => (
               <div key={i}>
                 <p className="text-3xl font-black text-amber-500">{item.num}</p>

@@ -7,6 +7,26 @@ import { getProductBySlug, formatPrice, products, categories } from "@/data/prod
 import { useCart } from "@/components/CartProvider";
 import ProductCard from "@/components/ProductCard";
 
+// Bảng size áo thun GF ICON
+const shirtSizeChart = [
+  { size: "L", weight: "Dưới 55kg", height: "160 – 168cm", body: "Người gầy, dáng nhỏ" },
+  { size: "XL", weight: "55 – 65kg", height: "165 – 173cm", body: "Cân đối" },
+  { size: "2XL", weight: "65 – 72kg", height: "168 – 177cm", body: "Cân đối – hơi to" },
+  { size: "3XL", weight: "70 – 78kg", height: "170 – 180cm", body: "Cân đối – to" },
+  { size: "4XL", weight: "78 – 83kg", height: "172 – 182cm", body: "To – vạm" },
+  { size: "5XL", weight: "80 – 89kg", height: "172 – 185cm", body: "Vạm – to" },
+];
+
+// Bảng size quần tây
+const pantsSizeChart = [
+  { size: "29", waist: "73cm", hip: "92cm", body: "55 – 60kg" },
+  { size: "30", waist: "76cm", hip: "95cm", body: "60 – 65kg" },
+  { size: "31", waist: "79cm", hip: "98cm", body: "65 – 70kg" },
+  { size: "32", waist: "82cm", hip: "101cm", body: "70 – 75kg" },
+  { size: "33", waist: "85cm", hip: "104cm", body: "75 – 80kg" },
+  { size: "34", waist: "88cm", hip: "107cm", body: "80 – 90kg" },
+];
+
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
@@ -17,12 +37,13 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
 
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl font-bold text-gray-900">Sản phẩm không tồn tại</h1>
-        <Link href="/san-pham" className="text-amber-600 hover:underline mt-4 inline-block">
+        <Link href="/san-pham" className="text-gray-900 hover:underline mt-4 inline-block text-sm uppercase tracking-wider">
           &larr; Quay lại sản phẩm
         </Link>
       </div>
@@ -33,6 +54,9 @@ export default function ProductDetailPage() {
   const related = products
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
+
+  const isPants = product.category === "quan-tay-au";
+  const currentSizeChart = isPants ? pantsSizeChart : shirtSizeChart;
 
   const handleAddToCart = () => {
     if (!selectedColor || !selectedSize) {
@@ -47,14 +71,14 @@ export default function ProductDetailPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-8">
-        <Link href="/" className="hover:text-gray-900">Trang chủ</Link>
+      <nav className="text-xs text-gray-400 mb-8 uppercase tracking-wider">
+        <Link href="/" className="hover:text-gray-900 transition">Trang chủ</Link>
         <span className="mx-2">/</span>
-        <Link href="/san-pham" className="hover:text-gray-900">Sản phẩm</Link>
+        <Link href="/san-pham" className="hover:text-gray-900 transition">Sản phẩm</Link>
         {category && (
           <>
             <span className="mx-2">/</span>
-            <Link href={`/san-pham?category=${category.slug}`} className="hover:text-gray-900">
+            <Link href={`/san-pham?category=${category.slug}`} className="hover:text-gray-900 transition">
               {category.name}
             </Link>
           </>
@@ -63,70 +87,76 @@ export default function ProductDetailPage() {
         <span className="text-gray-900">{product.name}</span>
       </nav>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image */}
-        <div className="bg-gray-100 rounded-2xl aspect-square flex items-center justify-center">
-          <div className="text-center text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" className="w-24 h-24 mx-auto">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5a1.5 1.5 0 001.5 1.5z" />
+        <div className="bg-[#f5f0eb] aspect-[3/4] flex items-center justify-center">
+          <div className="text-center opacity-30">
+            <svg viewBox="0 0 120 160" fill="none" className="w-32 h-44 mx-auto text-gray-500">
+              <path d="M60 12 L40 28 L35 25 L28 35 L18 140 L102 140 L92 35 L85 25 L80 28 Z" stroke="currentColor" strokeWidth="1" fill="none"/>
+              <path d="M40 28 Q60 42 80 28" stroke="currentColor" strokeWidth="1" fill="none"/>
+              <circle cx="60" cy="18" r="2.5" stroke="currentColor" strokeWidth="0.8" fill="none"/>
             </svg>
-            <p className="mt-3 text-sm">Thêm ảnh sản phẩm</p>
+            <p className="text-gray-400 text-xs mt-4 uppercase tracking-[0.2em]">Ảnh sản phẩm sắp cập nhật</p>
           </div>
         </div>
 
         {/* Product Info */}
         <div>
           {product.badge && (
-            <span className={`inline-block px-3 py-1 text-xs font-bold rounded-full uppercase mb-3 ${
-              product.badge === "hot" ? "bg-red-100 text-red-600" : product.badge === "new" ? "bg-amber-100 text-amber-600" : "bg-green-100 text-green-600"
+            <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-wider mb-4 ${
+              product.badge === "hot" ? "bg-gray-900 text-white" : product.badge === "new" ? "bg-gray-900 text-white" : "bg-emerald-500 text-white"
             }`}>
               {product.badge === "hot" ? "Bán chạy" : product.badge === "new" ? "Mới" : "Sale"}
             </span>
           )}
 
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{product.name}</h1>
-          <p className="text-sm text-gray-500 mt-2">{product.material}</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 uppercase tracking-wide">{product.name}</h1>
+          <p className="text-xs text-gray-400 mt-2 uppercase tracking-[0.15em]">{product.material}</p>
 
           {/* Price */}
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-3xl font-bold text-amber-600">{formatPrice(product.price)}</span>
+          <div className="mt-6 flex items-baseline gap-3">
+            <span className="text-3xl font-bold text-gray-900">{formatPrice(product.price)}</span>
             {product.originalPrice && (
               <span className="text-lg text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
             )}
             {product.originalPrice && (
-              <span className="text-sm bg-red-100 text-red-600 px-2 py-1 rounded-full font-semibold">
+              <span className="text-xs bg-amber-500 text-white px-2 py-1 font-bold">
                 -{Math.round((1 - product.price / product.originalPrice) * 100)}%
               </span>
             )}
           </div>
 
+          <div className="w-12 h-[1px] bg-gray-200 my-6" />
+
           {/* Description */}
-          <p className="mt-6 text-gray-600 leading-relaxed">{product.description}</p>
+          <p className="text-sm text-gray-500 leading-relaxed">{product.description}</p>
 
           {/* Features */}
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-5 space-y-2">
             {product.features.map((f, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                <span className="text-amber-500 mt-0.5">✓</span>
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-500">
+                <span className="w-1 h-1 rounded-full bg-gray-900 mt-2 shrink-0" />
                 {f}
               </li>
             ))}
           </ul>
 
+          <div className="w-12 h-[1px] bg-gray-200 my-6" />
+
           {/* Color Selection */}
-          <div className="mt-6">
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Màu sắc: {selectedColor && <span className="font-normal text-gray-500">{selectedColor}</span>}
+          <div>
+            <label className="block text-xs font-semibold text-gray-900 uppercase tracking-[0.15em] mb-3">
+              Màu sắc {selectedColor && <span className="font-normal text-gray-400 normal-case tracking-normal">— {selectedColor}</span>}
             </label>
             <div className="flex flex-wrap gap-2">
               {product.colors.map((color) => (
                 <button
                   key={color}
                   onClick={() => setSelectedColor(color)}
-                  className={`px-4 py-2 text-sm rounded-lg border transition ${
+                  className={`px-4 py-2.5 text-sm border transition-all ${
                     selectedColor === color
-                      ? "border-amber-600 bg-amber-50 text-amber-700 font-semibold"
-                      : "border-gray-200 text-gray-600 hover:border-gray-400"
+                      ? "border-gray-900 bg-gray-900 text-white font-medium"
+                      : "border-gray-200 text-gray-500 hover:border-gray-400"
                   }`}
                 >
                   {color}
@@ -137,18 +167,26 @@ export default function ProductDetailPage() {
 
           {/* Size Selection */}
           <div className="mt-5">
-            <label className="block text-sm font-semibold text-gray-900 mb-2">
-              Size: {selectedSize && <span className="font-normal text-gray-500">{selectedSize}</span>}
-            </label>
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-xs font-semibold text-gray-900 uppercase tracking-[0.15em]">
+                Size {selectedSize && <span className="font-normal text-gray-400 normal-case tracking-normal">— {selectedSize}</span>}
+              </label>
+              <button
+                onClick={() => setShowSizeGuide(!showSizeGuide)}
+                className="text-xs text-gray-400 hover:text-gray-900 underline underline-offset-2 transition uppercase tracking-wider"
+              >
+                Hướng dẫn chọn size
+              </button>
+            </div>
             <div className="flex flex-wrap gap-2">
               {product.sizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`w-14 h-10 text-sm rounded-lg border transition ${
+                  className={`min-w-[52px] h-11 px-3 text-sm border transition-all ${
                     selectedSize === size
-                      ? "border-amber-600 bg-amber-50 text-amber-700 font-semibold"
-                      : "border-gray-200 text-gray-600 hover:border-gray-400"
+                      ? "border-gray-900 bg-gray-900 text-white font-medium"
+                      : "border-gray-200 text-gray-500 hover:border-gray-400"
                   }`}
                 >
                   {size}
@@ -157,22 +195,79 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
+          {/* Size Guide Table */}
+          {showSizeGuide && (
+            <div className="mt-4 bg-[#f5f0eb] p-5 animate-fade-in">
+              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.15em] mb-4">
+                Bảng size {isPants ? "Quần Tây" : "Áo Thun"} GF ICON
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-300">
+                      <th className="text-left py-2 pr-4 text-xs font-bold text-gray-900 uppercase">Size</th>
+                      {isPants ? (
+                        <>
+                          <th className="text-left py-2 pr-4 text-xs font-bold text-gray-900 uppercase">Vòng eo</th>
+                          <th className="text-left py-2 pr-4 text-xs font-bold text-gray-900 uppercase">Vòng hông</th>
+                          <th className="text-left py-2 text-xs font-bold text-gray-900 uppercase">Cân nặng</th>
+                        </>
+                      ) : (
+                        <>
+                          <th className="text-left py-2 pr-4 text-xs font-bold text-gray-900 uppercase">Cân nặng</th>
+                          <th className="text-left py-2 pr-4 text-xs font-bold text-gray-900 uppercase">Chiều cao</th>
+                          <th className="text-left py-2 text-xs font-bold text-gray-900 uppercase">Dáng người</th>
+                        </>
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {isPants
+                      ? pantsSizeChart.map((row) => (
+                          <tr key={row.size} className={`border-b border-gray-200 ${selectedSize === row.size ? "bg-gray-900 text-white" : ""}`}>
+                            <td className="py-2.5 pr-4 font-bold">{row.size}</td>
+                            <td className="py-2.5 pr-4">{row.waist}</td>
+                            <td className="py-2.5 pr-4">{row.hip}</td>
+                            <td className="py-2.5">{row.body}</td>
+                          </tr>
+                        ))
+                      : shirtSizeChart.map((row) => (
+                          <tr key={row.size} className={`border-b border-gray-200 ${selectedSize === row.size ? "bg-gray-900 text-white" : ""}`}>
+                            <td className="py-2.5 pr-4 font-bold">{row.size}</td>
+                            <td className="py-2.5 pr-4">{row.weight}</td>
+                            <td className="py-2.5 pr-4">{row.height}</td>
+                            <td className="py-2.5">{row.body}</td>
+                          </tr>
+                        ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-[11px] text-gray-400 italic">
+                * Bảng size mang tính tương đối. Nếu nằm giữa 2 size, hãy chọn size lớn hơn. Nhắn Zalo 0927.007.117 để được tư vấn chính xác.
+              </p>
+            </div>
+          )}
+
           {/* Quantity */}
-          <div className="mt-5">
-            <label className="block text-sm font-semibold text-gray-900 mb-2">Số lượng</label>
-            <div className="flex items-center gap-3">
+          <div className="mt-6">
+            <label className="block text-xs font-semibold text-gray-900 uppercase tracking-[0.15em] mb-3">Số lượng</label>
+            <div className="flex items-center">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 border border-gray-200 rounded-lg text-gray-600 hover:border-gray-400 transition"
+                className="w-11 h-11 border border-gray-200 text-gray-500 hover:border-gray-400 transition flex items-center justify-center"
               >
-                -
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
+                </svg>
               </button>
-              <span className="w-10 text-center font-semibold">{quantity}</span>
+              <span className="w-14 h-11 flex items-center justify-center border-y border-gray-200 text-sm font-semibold">{quantity}</span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="w-10 h-10 border border-gray-200 rounded-lg text-gray-600 hover:border-gray-400 transition"
+                className="w-11 h-11 border border-gray-200 text-gray-500 hover:border-gray-400 transition flex items-center justify-center"
               >
-                +
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
               </button>
             </div>
           </div>
@@ -182,30 +277,45 @@ export default function ProductDetailPage() {
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className={`flex-1 py-3 px-6 rounded-full font-semibold text-white transition ${
+              className={`flex-1 py-3.5 px-6 text-sm font-semibold uppercase tracking-[0.15em] transition-all btn-shine ${
                 added
-                  ? "bg-green-500"
+                  ? "bg-emerald-600 text-white"
                   : product.inStock
-                  ? "bg-amber-600 hover:bg-amber-700 shadow-lg shadow-amber-600/30"
-                  : "bg-gray-300 cursor-not-allowed"
+                  ? "bg-gray-900 hover:bg-gray-800 text-white"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             >
-              {added ? "Đã thêm vào giỏ!" : product.inStock ? "Thêm vào giỏ hàng" : "Hết hàng"}
+              {added ? "Đã thêm vào giỏ ✓" : product.inStock ? "Thêm vào giỏ hàng" : "Hết hàng"}
             </button>
             <Link
               href="/gio-hang"
-              className="py-3 px-6 rounded-full font-semibold border border-gray-300 text-gray-700 hover:border-gray-500 transition"
+              className="py-3.5 px-6 text-sm font-semibold uppercase tracking-[0.15em] border border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all"
             >
               Mua ngay
             </Link>
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {[
+              { text: "Đổi trả 7 ngày", icon: "↩️" },
+              { text: "Free ship từ 500k", icon: "🚚" },
+              { text: "Hàng chính hãng", icon: "✦" },
+              { text: "Cam kết chất lượng", icon: "🛡️" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                <span>{item.icon}</span>
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Related Products */}
       {related.length > 0 && (
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Sản phẩm liên quan</h2>
+        <section className="mt-20">
+          <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wide mb-8">Sản phẩm liên quan</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
