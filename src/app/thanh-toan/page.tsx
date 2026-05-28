@@ -13,6 +13,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cod");
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   // Form state
   const [form, setForm] = useState({
@@ -32,34 +33,60 @@ export default function CheckoutPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.address || !form.city) {
       alert("Vui lòng điền đầy đủ thông tin giao hàng!");
       return;
     }
 
-    // Generate order number
-    const num = "GFI-" + Date.now().toString(36).toUpperCase();
-    setOrderNumber(num);
+    setSubmitting(true);
 
-    // In production: send order to backend/email/Zalo
-    // For now, create a summary to send via Zalo
-    const orderSummary = items
-      .map(
-        (i) =>
-          `• ${i.product.name} (${i.selectedColor}/${i.selectedSize}) x${i.quantity} = ${formatPrice(
-            i.product.price * i.quantity
-          )}`
-      )
-      .join("\n");
+    try {
+      const orderPayload = {
+        customer: {
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          address: form.address,
+          city: form.city,
+          note: form.note,
+        },
+        items: items.map((i) => ({
+          name: i.product.name,
+          color: i.selectedColor,
+          size: i.selectedSize,
+          quantity: i.quantity,
+          price: i.product.price,
+        })),
+        payment: {
+          method: paymentMethod,
+          subtotal: totalPrice,
+          shipping: shippingFee,
+          total: grandTotal,
+        },
+      };
 
-    const message = `ĐƠN HÀNG MỚI #${num}\n\nKhách: ${form.name}\nSĐT: ${form.phone}\nĐịa chỉ: ${form.address}, ${form.city}\nGhi chú: ${form.note || "Không"}\n\nSản phẩm:\n${orderSummary}\n\nTạm tính: ${formatPrice(totalPrice)}\nPhí ship: ${freeShip ? "Miễn phí" : formatPrice(shippingFee)}\nTỔNG: ${formatPrice(grandTotal)}\nThanh toán: ${paymentMethod === "cod" ? "COD" : "Chuyển khoản"}`;
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
 
-    console.log("=== ORDER ===", message);
+      const data = await res.json();
 
-    setOrderPlaced(true);
-    clearCart();
+      if (data.success) {
+        setOrderNumber(data.orderNumber);
+        setOrderPlaced(true);
+        clearCart();
+      } else {
+        alert(data.error || "Có lỗi xảy ra, vui lòng thử lại!");
+      }
+    } catch {
+      alert("Lỗi kết nối, vui lòng thử lại!");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (items.length === 0 && !orderPlaced) {
@@ -326,9 +353,14 @@ export default function CheckoutPage() {
 
               <button
                 type="submit"
-                className="w-full mt-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-full transition shadow-lg shadow-amber-600/30"
+                disabled={submitting}
+                className={`w-full mt-6 py-3 text-white font-semibold rounded-full transition shadow-lg shadow-amber-600/30 ${
+                  submitting
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-amber-600 hover:bg-amber-700"
+                }`}
               >
-                Đặt hàng
+                {submitting ? "Đang xử lý..." : "Đặt hàng"}
               </button>
 
               <p className="mt-3 text-xs text-gray-400 text-center">
