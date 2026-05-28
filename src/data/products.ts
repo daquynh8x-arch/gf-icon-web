@@ -74,8 +74,8 @@ export const products: Product[] = [
     slug: "ao-thun-nam-theu-truoc-sau",
     name: "Áo Thun Nam Thêu Trước Sau Cao Cấp",
     category: "ao-thun-co-tru",
-    price: 289000,
-    originalPrice: 350000,
+    price: 179000,
+    originalPrice: 239000,
     images: [
       "/images/products/den-truoc.jpg",
       "/images/products/den-sau.jpg",
@@ -87,7 +87,7 @@ export const products: Product[] = [
       "/images/products/trang-tay.jpg",
       "/images/products/trang-logo.jpg",
     ],
-    colors: ["Đen phối cổ tay", "Trắng phối cổ tay"],
+    colors: ["Trắng", "Đen"],
     sizes: ["L", "XL", "2XL", "3XL"],
     material: "Thun lạnh cao cấp co giãn 4 chiều",
     description:
