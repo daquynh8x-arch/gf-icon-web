@@ -11,6 +11,10 @@ const NTFY_TOPIC = process.env.NTFY_TOPIC || "gficon-dh-0881815b";
 const STORE_EMAIL = process.env.STORE_EMAIL || "contact@gficon.vn";
 
 function formatVND(amount: number): string {
+  return new Intl.NumberFormat("vi-VN").format(amount) + "d";
+}
+
+function formatVNDFull(amount: number): string {
   return new Intl.NumberFormat("vi-VN").format(amount) + "đ";
 }
 
@@ -91,20 +95,21 @@ export async function POST(request: NextRequest) {
       (customer.email ? `EMAIL: ${customer.email}\n` : "") +
       `\nSAN PHAM:\n${itemsText}\n\n` +
       `TONG: ${formatVND(payment.total)} (${payment.method === "cod" ? "COD" : "CK"})` +
-      (payment.shipping === 0 ? " | FREE SHIP" : ` | Ship: ${formatVND(payment.shipping)}`);
+      (payment.shipping === 0 ? " | FREE SHIP" : ` | Ship: ${formatVND(payment.shipping)}`);;
 
     // ========== 1. NTFY.SH — Push notification ==========
     try {
-      await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+      const ntfyResp = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
         method: "POST",
         headers: {
           "Title": `Don hang moi #${orderNumber} - ${formatVND(payment.total)}`,
           "Priority": "high",
           "Tags": "shopping_cart,moneybag",
-          "Actions": `view, Goi ${customer.phone}, tel:${customer.phone}`,
         },
         body: notifyMessage,
       });
+      const ntfyResult = await ntfyResp.text();
+      console.log("ntfy.sh response:", ntfyResp.status, ntfyResult);
     } catch (ntfyError) {
       console.error("ntfy.sh notification failed:", ntfyError);
     }
@@ -118,7 +123,7 @@ export async function POST(request: NextRequest) {
           "Accept": "application/json",
         },
         body: JSON.stringify({
-          _subject: `DON HANG MOI #${orderNumber} - ${customer.name} - ${formatVND(payment.total)}`,
+          _subject: `DON HANG MOI #${orderNumber} - ${customer.name} - ${formatVNDFull(payment.total)}`,
           "Ma don hang": orderNumber,
           "Ngay dat": orderDate,
           "Ten khach": customer.name,
@@ -127,9 +132,9 @@ export async function POST(request: NextRequest) {
           "Dia chi": `${customer.address}, ${customer.city}`,
           "Ghi chu": customer.note || "Khong",
           "San pham": itemsText,
-          "Tam tinh": formatVND(payment.subtotal),
-          "Phi ship": payment.shipping === 0 ? "Mien phi" : formatVND(payment.shipping),
-          "Tong cong": formatVND(payment.total),
+          "Tam tinh": formatVNDFull(payment.subtotal),
+          "Phi ship": payment.shipping === 0 ? "Mien phi" : formatVNDFull(payment.shipping),
+          "Tong cong": formatVNDFull(payment.total),
           "Thanh toan": payment.method === "cod" ? "COD" : "Chuyen khoan",
           _template: "table",
           _captcha: "false",
