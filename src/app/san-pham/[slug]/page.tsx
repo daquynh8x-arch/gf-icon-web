@@ -9,12 +9,10 @@ import ProductCard from "@/components/ProductCard";
 
 // Bảng size áo thun GF ICON
 const shirtSizeChart = [
-  { size: "L", weight: "Dưới 55kg", height: "160 – 168cm", body: "Người gầy, dáng nhỏ" },
-  { size: "XL", weight: "55 – 65kg", height: "165 – 173cm", body: "Cân đối" },
-  { size: "2XL", weight: "65 – 72kg", height: "168 – 177cm", body: "Cân đối – hơi to" },
-  { size: "3XL", weight: "70 – 78kg", height: "170 – 180cm", body: "Cân đối – to" },
-  { size: "4XL", weight: "78 – 83kg", height: "172 – 182cm", body: "To – vạm" },
-  { size: "5XL", weight: "80 – 89kg", height: "172 – 185cm", body: "Vạm – to" },
+  { size: "L", weight: "55 – 62kg", height: "160 – 168cm", body: "Gầy – cân đối" },
+  { size: "XL", weight: "62 – 70kg", height: "165 – 175cm", body: "Cân đối" },
+  { size: "2XL", weight: "70 – 80kg", height: "168 – 178cm", body: "Cân đối – hơi to" },
+  { size: "3XL", weight: "78 – 90kg", height: "170 – 185cm", body: "To – vạm vỡ" },
 ];
 
 // Bảng size quần tây
@@ -296,18 +294,28 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Trust badges */}
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            {[
-              { text: "Đổi trả 7 ngày", icon: "↩️" },
-              { text: "Free ship từ 500k", icon: "🚚" },
-              { text: "Hàng chính hãng", icon: "✦" },
-              { text: "Cam kết chất lượng", icon: "🛡️" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
-                <span>{item.icon}</span>
-                <span>{item.text}</span>
-              </div>
-            ))}
+          <div className="mt-8 bg-[#f5f0eb] p-5">
+            <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.15em] mb-3">
+              Yên tâm khi mua GF ICON
+            </h3>
+            <div className="space-y-2">
+              {[
+                "Hình ảnh sản phẩm chụp thật",
+                "Chất vải giống mô tả",
+                "Form mặc thực tế dễ mặc",
+                "Kiểm tra kỹ trước khi giao hàng",
+                "Hỗ trợ đổi size nếu mặc không vừa",
+                "Hàng lỗi đổi miễn phí qua Zalo",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                  <span className="text-emerald-500 shrink-0">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-gray-400 italic">
+              Inbox khu vực bạn đang sống, shop sẽ gửi địa chỉ cửa hàng gần nhất để xem chất vải và thử form trực tiếp.
+            </p>
           </div>
         </div>
       </div>
