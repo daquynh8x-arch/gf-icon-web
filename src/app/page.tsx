@@ -89,12 +89,12 @@ export default function HomePage() {
           <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-3">Bộ sưu tập</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase tracking-wide">Danh mục sản phẩm</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat) => (
             <Link
               key={cat.id}
               href={`/san-pham?category=${cat.slug}`}
-              className="group relative bg-[#f5f0eb] overflow-hidden aspect-[4/5] flex items-end hover:shadow-2xl transition-all duration-500"
+              className="group relative bg-[#f5f0eb] overflow-hidden aspect-[3/4] flex items-end hover:shadow-2xl transition-all duration-500"
             >
               {/* Placeholder content */}
               <div className="absolute inset-0 flex items-center justify-center">

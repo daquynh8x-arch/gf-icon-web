@@ -90,13 +90,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/san-pham?category=ao-polo" className="hover:text-white transition-all inline-block">
-                  Áo Polo Nam
+                <Link href="/san-pham?category=ao-thun-co-tron" className="hover:text-white transition-all inline-block">
+                  Áo Thun Cổ Tròn
                 </Link>
               </li>
               <li>
-                <Link href="/san-pham?category=ao-thun-co-tron" className="hover:text-white transition-all inline-block">
-                  Áo Thun Cổ Tròn
+                <Link href="/san-pham?category=quan-tay-au" className="hover:text-white transition-all inline-block">
+                  Quần Tây Âu
+                </Link>
+              </li>
+              <li>
+                <Link href="/san-pham?category=san-pham-khac" className="hover:text-white transition-all inline-block">
+                  Sản Phẩm Khác
                 </Link>
               </li>
             </ul>

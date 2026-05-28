@@ -7,7 +7,8 @@ import { useCart } from "./CartProvider";
 const navLinks = [
   { href: "/san-pham", label: "Sản phẩm" },
   { href: "/san-pham?category=ao-thun-co-tru", label: "Áo Cổ Trụ" },
-  { href: "/san-pham?category=ao-polo", label: "Áo Polo" },
+  { href: "/san-pham?category=ao-thun-co-tron", label: "Áo Cổ Tròn" },
+  { href: "/san-pham?category=quan-tay-au", label: "Quần Tây Âu" },
   { href: "/ve-chung-toi", label: "Về chúng tôi" },
   { href: "/lien-he", label: "Liên hệ" },
 ];

@@ -7,7 +7,7 @@ export interface Product {
   id: string;
   slug: string;
   name: string;
-  category: "ao-thun-co-tru" | "ao-polo" | "ao-thun-co-tron";
+  category: "ao-thun-co-tru" | "ao-thun-co-tron" | "quan-tay-au" | "san-pham-khac";
   price: number;
   originalPrice?: number;
   images: string[];
@@ -37,30 +37,38 @@ export const categories: Category[] = [
     id: "ao-thun-co-tru",
     name: "Áo Thun Cổ Trụ",
     slug: "ao-thun-co-tru",
-    description: "Áo thun cổ trụ nam phong cách lịch lãm, chất thun lạnh QC thoáng mát",
+    description: "Phong cách lịch lãm, chất thun lạnh QC thoáng mát",
     image: "/images/category-co-tru.jpg",
-  },
-  {
-    id: "ao-polo",
-    name: "Áo Polo",
-    slug: "ao-polo",
-    description: "Áo polo nam cá sấu mịn QC cao cấp, may kỹ chuẩn shop",
-    image: "/images/category-polo.jpg",
   },
   {
     id: "ao-thun-co-tron",
     name: "Áo Thun Cổ Tròn",
     slug: "ao-thun-co-tron",
-    description: "Áo thun cổ tròn basic, dễ phối đồ, chất thun lạnh QC",
+    description: "Basic dễ phối đồ, chất thun lạnh QC mềm mịn",
     image: "/images/category-co-tron.jpg",
+  },
+  {
+    id: "quan-tay-au",
+    name: "Quần Tây Âu",
+    slug: "quan-tay-au",
+    description: "Lịch lãm, đứng form, phù hợp đi làm và sự kiện",
+    image: "/images/category-quan-tay.jpg",
+  },
+  {
+    id: "san-pham-khac",
+    name: "Sản Phẩm Khác",
+    slug: "san-pham-khac",
+    description: "Phụ kiện, áo khoác và các sản phẩm đặc biệt",
+    image: "/images/category-khac.jpg",
   },
 ];
 
 // ============================================================
-// SẢN PHẨM MẪU — Quỳnh thay ảnh thật và cập nhật thông tin
+// SẢN PHẨM — Quỳnh thay ảnh thật và cập nhật thông tin
 // ============================================================
 
 export const products: Product[] = [
+  // --- ÁO THUN CỔ TRỤ ---
   {
     id: "gfi-001",
     slug: "ao-thun-co-tru-classic-den",
@@ -106,59 +114,16 @@ export const products: Product[] = [
     inStock: true,
     badge: "new",
   },
+
+  // --- ÁO THUN CỔ TRÒN ---
   {
     id: "gfi-003",
-    slug: "ao-polo-ca-sau-min",
-    name: "Áo Polo Cá Sấu Mịn Premium",
-    category: "ao-polo",
-    price: 299000,
-    originalPrice: 380000,
-    images: ["/images/products/polo-ca-sau-1.jpg"],
-    colors: ["Đen", "Trắng", "Xanh rêu", "Xám nhạt", "Be"],
-    sizes: ["M", "L", "XL", "XXL"],
-    material: "Cá sấu mịn QC cao cấp",
-    description:
-      "Áo polo GF ICON chất cá sấu mịn QC — bề mặt mịn màng, thoáng khí, không xù lông. Thiết kế cổ bẻ classic, phù hợp đi làm và đi chơi. May kỹ chuẩn shop, đường chỉ chỉnh chu.",
-    features: [
-      "Chất liệu: Cá sấu mịn QC cao cấp — mịn màng, thoáng khí",
-      "Cổ bẻ classic, giữ phom tốt",
-      "Không xù lông, không biến dạng sau nhiều lần giặt",
-      "Size: M - XXL (50kg - 95kg)",
-      "Phù hợp đi làm, cafe, hẹn hò",
-    ],
-    inStock: true,
-    badge: "hot",
-  },
-  {
-    id: "gfi-004",
-    slug: "ao-polo-phoi-vien",
-    name: "Áo Polo Phối Viền Sport",
-    category: "ao-polo",
-    price: 289000,
-    images: ["/images/products/polo-phoi-vien-1.jpg"],
-    colors: ["Đen phối đỏ", "Navy phối trắng", "Xám phối đen"],
-    sizes: ["M", "L", "XL", "XXL"],
-    material: "Cá sấu mịn QC cao cấp",
-    description:
-      "Áo polo phối viền GF ICON — phong cách sporty nhưng vẫn lịch sự. Chất cá sấu mịn QC mềm mại, cổ tiêu chuẩn, viền cổ và tay phối màu nổi bật.",
-    features: [
-      "Chất liệu: Cá sấu mịn QC — mềm, thoáng, bền màu",
-      "Thiết kế phối viền sporty tại cổ và tay",
-      "Form regular fit — thoải mái vận động",
-      "Size: M - XXL",
-      "Kết hợp được với nhiều phong cách",
-    ],
-    inStock: true,
-    badge: "new",
-  },
-  {
-    id: "gfi-005",
     slug: "ao-thun-co-tron-basic",
     name: "Áo Thun Cổ Tròn Basic",
     category: "ao-thun-co-tron",
     price: 199000,
     images: ["/images/products/co-tron-basic-1.jpg"],
-    colors: ["Đen", "Trắng", "Xám", "Navy", "Kem"],
+    colors: ["Đen", "Trắng", "Xám", "Xanh Navy", "Kem"],
     sizes: ["M", "L", "XL", "XXL"],
     material: "Thun lạnh QC",
     description:
@@ -171,15 +136,16 @@ export const products: Product[] = [
       "5 màu cơ bản, dễ mix-match",
     ],
     inStock: true,
+    badge: "hot",
   },
   {
-    id: "gfi-006",
+    id: "gfi-004",
     slug: "ao-thun-co-tron-in-minimal",
     name: "Áo Thun Cổ Tròn In Minimal",
     category: "ao-thun-co-tron",
     price: 229000,
     images: ["/images/products/co-tron-minimal-1.jpg"],
-    colors: ["Đen", "Trắng", "Xám đậm"],
+    colors: ["Đen", "Trắng", "Xám Đậm"],
     sizes: ["M", "L", "XL", "XXL"],
     material: "Thun lạnh QC",
     description:
@@ -193,6 +159,99 @@ export const products: Product[] = [
     ],
     inStock: true,
     badge: "new",
+  },
+
+  // --- QUẦN TÂY ÂU ---
+  {
+    id: "gfi-005",
+    slug: "quan-tay-au-slim-fit",
+    name: "Quần Tây Âu Slim Fit",
+    category: "quan-tay-au",
+    price: 359000,
+    originalPrice: 450000,
+    images: ["/images/products/quan-tay-slim-1.jpg"],
+    colors: ["Đen", "Xám Đậm", "Xanh Navy"],
+    sizes: ["29", "30", "31", "32", "33", "34"],
+    material: "Vải âu co giãn cao cấp",
+    description:
+      "Quần tây âu GF ICON dáng slim fit — đứng form, tôn dáng, co giãn thoải mái. Chất vải âu cao cấp, không nhăn, giữ phom sau nhiều lần giặt. Phù hợp đi làm, sự kiện, hay phối smart casual.",
+    features: [
+      "Chất liệu: Vải âu co giãn cao cấp — thoáng mát, không nhăn",
+      "Dáng slim fit — tôn dáng, gọn gàng",
+      "Lưng có khóa móc, dây thắt lưng chuẩn",
+      "Size: 29 - 34 (55kg - 90kg)",
+      "Phù hợp đi làm, công sở, sự kiện",
+    ],
+    inStock: true,
+    badge: "hot",
+  },
+  {
+    id: "gfi-006",
+    slug: "quan-tay-au-regular",
+    name: "Quần Tây Âu Regular Fit",
+    category: "quan-tay-au",
+    price: 339000,
+    images: ["/images/products/quan-tay-regular-1.jpg"],
+    colors: ["Đen", "Xám", "Nâu", "Xanh Navy"],
+    sizes: ["29", "30", "31", "32", "33", "34"],
+    material: "Vải âu co giãn cao cấp",
+    description:
+      "Quần tây âu GF ICON dáng regular — thoải mái, không ôm sát, phù hợp nhiều vóc dáng. Vải âu co giãn nhẹ, thoáng mát cả ngày dài.",
+    features: [
+      "Chất liệu: Vải âu co giãn — mềm mại, thoáng khí",
+      "Dáng regular fit — thoải mái mọi vóc dáng",
+      "Đường may kỹ, ly quần sắc nét",
+      "Size: 29 - 34",
+      "4 màu cơ bản, dễ phối áo sơ mi, áo thun",
+    ],
+    inStock: true,
+    badge: "new",
+  },
+
+  // --- SẢN PHẨM KHÁC ---
+  {
+    id: "gfi-007",
+    slug: "ao-khoac-bomber-basic",
+    name: "Áo Khoác Bomber Basic",
+    category: "san-pham-khac",
+    price: 399000,
+    originalPrice: 520000,
+    images: ["/images/products/bomber-basic-1.jpg"],
+    colors: ["Đen", "Xanh Rêu", "Xám"],
+    sizes: ["M", "L", "XL", "XXL"],
+    material: "Vải dù chống nước nhẹ",
+    description:
+      "Áo khoác bomber GF ICON — thiết kế gọn gàng, chất dù nhẹ chống nước, phù hợp thời tiết Sài Gòn. Layer hoàn hảo với áo thun cổ tròn hoặc cổ trụ.",
+    features: [
+      "Chất liệu: Vải dù chống nước nhẹ",
+      "Bo cổ, bo tay, bo gấu co giãn",
+      "2 túi ngoài + 1 túi trong",
+      "Size: M - XXL",
+      "Phối đẹp với mọi sản phẩm GF ICON",
+    ],
+    inStock: true,
+    badge: "sale",
+  },
+  {
+    id: "gfi-008",
+    slug: "that-lung-da-nam",
+    name: "Thắt Lưng Da Nam Classic",
+    category: "san-pham-khac",
+    price: 189000,
+    images: ["/images/products/that-lung-1.jpg"],
+    colors: ["Đen", "Nâu"],
+    sizes: ["Free size"],
+    material: "Da PU cao cấp",
+    description:
+      "Thắt lưng da nam GF ICON — khóa kim loại chắc chắn, da PU cao cấp mềm mại. Phối hoàn hảo với quần tây âu hoặc quần jeans.",
+    features: [
+      "Chất liệu: Da PU cao cấp — mềm, bền, không bong tróc",
+      "Khóa kim loại mạ chống gỉ",
+      "Bề rộng 3.5cm — chuẩn nam tính",
+      "Free size — cắt được theo vòng eo",
+      "Phối đẹp với quần tây, jeans, kaki",
+    ],
+    inStock: true,
   },
 ];
 
